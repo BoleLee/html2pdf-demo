@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>房屋查验报告</title>
+  <style>
+    /* 打印样式 */
+    @media print {
+      body {
+        background-color: #fff;
+      }
+      .table-head {
+        background-color: #9bc0eb;
+      }
+      .page-start {
+        page-break-before: always;
+      }
+    }
+    @page {
+      size: A4 portrait;
+
+      /* 以下设置常见浏览器不支持 */
+      /* @bottom-left, @bottom-center, @bottom-right {
+        border-top: 1px solid gray;
+      }
+      @bottom-center {
+        content: "第" counter(page) "页";
+      } */
+    }
+
+    /* 样式重置 */
+    p {
+      margin: 0;
+    }
+    
+    /* A4 (210*297)mm 96dpi (794*1123)px */
+    /* 页边距 5mm - 20px */
+    /* 模拟页边距：(80px 60px) (20mm 15mm) */
+    html {
+      background: #efefef;
+    }
+    body {
+      width: 794px;
+      margin: auto;
+      background: #fff;
+      box-sizing: border-box;
+      font-size: 14px;
+    }
+    .page {
+      min-height: 1123px;
+      padding: 80px 60px;
+      box-sizing: border-box;
+    }
+    /* 另起页面 */
+    .page-start {
+      page-break-before: always;
+    }
+
+    .tac {
+      text-align: center;
+    }
+    .header-contact {
+      line-height: 2.2;
+      width: 80%;
+      margin: 20px auto;
+    }
+    .header-tip {
+      font-size: 12px;
+      line-height: 1.6;
+      margin: 50px auto 20px;
+    }
+
+    /* table基本样式 */
+    table {
+      border-collapse: collapse;
+      border-spacing: 0;
+      width: 100%;
+      color: #000;
+    }
+    table, th, td {
+      border: 1px solid #000;
+    }
+    th, td {
+      padding: 5px 10px;
+      box-sizing: border-box;
+    }
+    td.img-cell {
+      padding: 1px;
+    }
+    .table-head {
+      background-color: #9bc0eb;
+    }
+
+    .statistics-tip {
+      font-size: 12px;
+      line-height: 1.8;
+    }
+  </style>
+</head>
+<body>
+  <header class="page" style="width: 80%; margin: 0 auto;">
+    <h1 class="tac">XX验房第三方</h1>
+    <h1 class="tac">房屋查验咨询报告</h1>
+    <div class="header-contact">
+      <p>验房热线：15011110000 &nbsp;&nbsp;&nbsp;&nbsp; 抖音平台：18011110000</p>
+      <p>张工电话：18011110000（微信同号）</p>
+      <p>刘工电话：15211110000（微信同号）</p>
+    </div>
+    <div class="header-tip">
+      <p>验房服务监督热线：15011110000 公司地址：某某街道某某路某某大厦某某室</p>
+      <p style="text-decoration: underline;">委托方未经平台委派验房师的以及无委托方信息留存记录的验房服务则视为无效</p>
+      <p>本报告分空间进行问题记录，现场便笺纸将各问题点标识完整，请各方拍照留存</p>
+    </div>
+    <div style="text-align: right;">
+      <img src="imgs/header-qrcode.jpeg" alt="某某验房监理" width="auto" height="200">
+    </div>
+  </header>
+  <main class="page-start">
+    <section class="page">
+      <h2>一、房屋基础信息</h2>
+      <table style="width: 100%;">
+        <tbody>
+          <tr>
+            <th>楼盘名称</th>
+            <td colspan="3">某某小区</td>
+          </tr>
+          <tr>
+            <th>楼盘地址</th>
+            <td colspan="3">请替换楼盘地址字段</td>
+          </tr>
+          <tr>
+            <th>开发单位</th>
+            <td colspan="3">请替换开发单位</td>
+          </tr>
+          <tr>
+            <th>业主姓名</th>
+            <td>请替换业主姓名</td>
+            <th>业主电话</th>
+            <td>18911110000</td>
+          </tr>
+          <tr>
+            <th>房屋结构</th>
+            <td>
+              <div>
+                <input type="radio" name="house_structure" id="brick-concrete" value="砖混结构">
+                <label for="brick-concrete">砖混结构</label>
+              </div>
+              <div>
+                <input type="radio" name="house_structure" id="steel"value="钢结构">
+                <label for="steel">钢结构</label>
+              </div>
+              <div>
+                <input type="radio" name="house_structure" id="reinforced-concrete" value="钢筋混泥土结构">
+                <label for="reinforced-concrete">钢筋混泥土结构</label>
+              </div>
+              <div>
+                <input type="radio" name="house_structure" id="frame-shear-wall" value="框剪结构" checked>
+                <label for="frame-shear-wall">框剪结构</label>
+              </div>
+            </td>
+            <th>房屋类型</th>
+            <td>
+              <div>
+                <input type="checkbox" name="house_type" id="flat-bed" value="平层" checked>
+                <label for="flat-bed">平层</label>
+              </div>
+              <div>
+                <input type="checkbox" name="house_type" id="duplex"value="复式">
+                <label for="duplex">复式</label>
+              </div>
+              <div>
+                <input type="checkbox" name="house_type" id="town-house" value="联体别墅">
+                <label for="town-house">联体别墅</label>
+              </div>
+              <div>
+                <input type="checkbox" name="house_type" id="detached-villa" value="独栋别墅">
+                <label for="detached-villa">独栋别墅</label>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <th>装修程度</th>
+            <td>
+              <div>
+                <input type="checkbox" name="house_decoration" id="roughcast" value="毛坯房">
+                <label for="roughcast">毛坯房</label>
+              </div>
+              <div>
+                <input type="checkbox" name="house_decoration" id="sparsely-furnished"value="简装房">
+                <label for="sparsely-furnished">简装房</label>
+              </div>
+              <div>
+                <input type="checkbox" name="house_decoration" id="refined" value="精装房" checked>
+                <label for="refined">精装房</label>
+              </div>
+            </td>
+            <th>房屋位置</th>
+            <td>X栋X层X户</td>
+          </tr>
+          <tr>
+            <th>建筑面积</th>
+            <td>100㎡</td>
+            <th>查验日期</th>
+            <td>2022年05月20日</td>
+          </tr>
+          <tr>
+            <th>验房师</th>
+            <td colspan="3">张工</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+    <section class="page">
+      <h2>二、查验数据分析</h2>
+      <h3>查验数据统计</h3>
+      <h4 style="text-align: center;">查验问题空间分布</h4>
+      <div id="chart-column-space"><!-- 柱状图 --></div>
+      <div class="statistics-tip">
+        本次查验共发现质量问题10条，问题最多的前三个空间部位是：公卫 4条，主卫 3条，厨房 3条。
+      </div>
+
+      <h4 style="text-align: center; margin-top: 70px;">查验问题分类统计</h4>
+      <div id="chart-column-type"><!-- 柱状图 --></div>
+      <div class="statistics-tip">
+        <p>本次查验工作涉及5大类的5项检查项目，问题最多的前三个类别是：电气工程 3条；卫浴工程 2条；顶棚工程 2条。</p>
+        <p>各检查项详细数据如下：</p>
+        <table>
+          <tbody>
+            <tr>
+              <th>分类</th>
+              <th>子分类</th>
+              <th>问题总数/合格</th>
+            </tr>
+            <tr>
+              <td rowspan="2">电气工程</td>
+              <td>室内布线</td>
+              <td>3</td>
+            </tr>
+            <tr>
+              <td>子分类2示例</td>
+              <td>0</td>
+            </tr>
+            <tr>
+              <td>卫浴工程</td>
+              <td>淋浴间</td>
+              <td>2</td>
+            </tr>
+            <tr>
+              <td>顶棚工程</td>
+              <td>顶棚基层</td>
+              <td>2</td>
+            </tr>
+            <tr>
+              <td>给排水工程</td>
+              <td>室内给水管道及配件</td>
+              <td>2</td>
+            </tr>
+            <tr>
+              <td>厨房工程</td>
+              <td>吸油烟机</td>
+              <td>1</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div>
+        <img src="imgs/std-report.jpg" alt="指数报告" width="100%" height="auto">
+      </div>
+    </section>
+    <section class="page page-start">
+      <h2>三、房屋查验内容</h2>
+      <h3>（一）质量问题明细</h3>
+      <table>
+        <thead>
+          <tr>
+            <th class="table-head" style="width: 50px;">序号</th>
+            <th class="table-head">问题详情</th>
+            <th class="table-head" style="width: 402px;">照片</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>
+              <p>分类：顶棚工程-顶棚基层</p>
+              <p>问题描述：裂纹</p>
+              <p>部位：主卫</p>
+            </td>
+            <td class="img-cell">
+              <div style="display: flex;">
+                <img src="imgs/issue-1.jpeg" alt="" width="200" height="auto">
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>
+              <p>分类：顶棚工程-顶棚基层</p>
+              <p>问题描述：裂纹</p>
+              <p>部位：公卫</p>
+            </td>
+            <td class="img-cell">
+              <div style="display: flex;">
+                <img src="imgs/issue-1.jpeg" alt="" width="200" height="auto">
+                <img src="imgs/issue-1.jpeg" alt="" width="200" height="auto">
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="3">
+              <div style="white-space: pre-line;">
+                标准依据：《住宅室内装饰装修工程质量验收规范》 JGJ／T 304-2013
+                4.4.1 抹灰顶棚基层材料的品种、规格和性能应符合设计要求。 
+                4.4.2 抹灰顶棚基层与基体之间以及分层施工的基层，各层之 间应粘结牢固，无裂纹。
+                4.4.3 基层表面应顺平、接槎平整，无爆灰和裂缝。
+                《建筑装饰装修工程质量验收标准》GB50210-2018
+                12.1.5 涂饰工程的基层处理应符合下列规定：
+                1 新建筑物的混凝土或抹灰基层在用腻子找平或直接涂饰涂料前应涂刷抗碱封闭底漆；
+                2 既有建筑墙面在用腻子找平或直接涂饰涂料前应清除疏松的旧装修层，并涂刷界面剂；
+                3 混凝土或抹灰基层在用溶剂型腻子找平或直接涂刷溶剂型涂料时，含水率不得大于8%；在用乳液型腻子找平或直接涂刷乳液型涂料时，含水率不得大于10%,木材基层的含水率不得大于12%；
+                4 找平层应平整、坚实、牢固，无粉化、起皮和裂缝；内墙找平层的粘结强度应符合现行行业标准《建筑室内用腻子》JG/T298的规定；
+                5 厨房、卫生间墙面的找平层应使用耐水腻子。
+              </div>
+            </td>
+          </tr>
+          <!-- 示例2 -->
+          <tr>
+            <td>3</td>
+            <td>
+              <p>分类：厨房工程-吸油烟机</p>
+              <p>问题描述：排烟管包管破损漏风</p>
+              <p>部位：厨房</p>
+            </td>
+            <td class="img-cell">
+              <div style="display: flex;">
+                <img src="imgs/issue-1.jpeg" alt="" width="200" height="auto">
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="3">
+              <div style="white-space: pre-line;">
+                标准依据：《家用厨房设备第4部分：设计与安装》GB/T18884.4-2015 
+                4.2.6.3 吸油烟机安装高度符合图纸要求，安装牢固无松动，试用无异常。
+                4.2.7.3 吸油烟机安装应水平，牢固固定在后墙面（或连接板上），不得松动或抖动。
+                4.2.8.7 吸油烟机排气管与接口处应采取密封措施。
+                《吸油烟机》GBT17713-2011
+                5.3空气性能
+                5.3.1 吸油烟机在额定电压、额定功率下，以正常工作时的最高转速挡运转，其空气性能指标的具体要求见表2
+                5.4噪声
+                5.4.1 吸油烟机在额定电压、额定功率下，以正常工作时的最高转速挡运转，其噪声指标的具体要求见表3
+              </div>
+            </td>
+          </tr>
+          <!-- 示例3 -->
+          <tr>
+            <td>4</td>
+            <td>
+              <p>分类：卫浴工程-淋浴间</p>
+              <p>问题描述：渗漏挡水条下方漏水</p>
+              <p>部位：主卫</p>
+            </td>
+            <td class="img-cell">
+              <div style="display: flex;">
+                <img src="imgs/issue-1.jpeg" alt="" width="200" height="auto">
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td>
+              <p>分类：卫浴工程-淋浴间</p>
+              <p>问题描述：渗漏挡水条下方漏水</p>
+              <p>部位：公卫</p>
+            </td>
+            <td class="img-cell">
+              <div style="display: flex;">
+                <img src="imgs/issue-1.jpeg" alt="" width="200" height="auto">
+                <img src="imgs/issue-1.jpeg" alt="" width="200" height="auto">
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="3">
+              <div style="white-space: pre-line;">
+                标准依据：《住宅室内装饰装修工程质量验收规范》 JGJ／T 304-2013
+                14.3.2淋浴间与相应墙体结合部位应无渗漏。
+                14.3.3淋浴间门应安装牢固，开关灵活。玻璃应为安全玻璃。
+                14.3.4淋浴间低于相连室内地面不宜小于20mm或设置挡水
+                条，且挡水条应安装牢固、密实。
+                14.3.5淋浴间内给水、排水系统应进水顺畅、排水通畅、不堵塞。
+                14.3.6淋浴间表面应洁净、无污损，不得有翘曲、裂缝及缺损。
+                14.3.7淋浴间打胶部位应打胶完整、胶面光滑、均匀，无污染。
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+  <footer class="page page-start" style="width: 80%; margin: 0 auto;">
+    <h3 class="tac">查验声明</h3>
+    <ol style="line-height: 2.8;">
+      <li>本报告仅供雇主了解所委托查验的房屋客观信息（真实状况）之用，未经本公司同意，不得用于广告、商业宣传等商业行为。</li>
+      <li>本报告涂改无效。</li>
+      <li>如对本查验报告有异议请于收到报告之日起十五天提出。</li>
+      <li>未经书面许可，不得部分复制本查验报告；报告局部复印无效。</li>
+      <li>对本报告未提及项目，本公司不予评判。</li>
+      <li>报告解释权为本公司所有。</li>
+    </ol>
+    <h1 class="tac" style="margin: 40px auto;">交一套业主心中的好房子！</h1>
+    <div class="header-tip">
+      <p>验房服务监督热线：15011110000</p>
+      <p style="text-decoration: underline;">委托方未经平台委派验房师的以及无委托方信息留存记录的验房服务则视为无效</p>
+      <p>本报告分空间进行问题记录，现场便笺纸将各问题点标识完整，请各方拍照留存</p>
+    </div>
+    <div style="text-align: right;">
+      <img src="imgs/header-qrcode.jpeg" alt="某某验房监理" width="auto" height="200">
+    </div>
+  </footer>
+
+  <script type="text/javascript" src="https://unpkg.com/@antv/g2plot@latest/dist/g2plot.min.js"></script>
+  <script>
+    const { Column } = G2Plot
+    const dataSpace = [
+      {
+        area: '公卫',
+        value: 4
+      },
+      {
+        area: '主卫',
+        value: 3
+      },
+      {
+        area: '厨房',
+        value: 3
+      }
+    ]
+    const dataType = [
+      {
+        type: '电气工程',
+        value: 3
+      },
+      {
+        type: '卫浴工程',
+        value: 2
+      },
+      {
+        type: '顶棚工程',
+        value: 2
+      },
+      {
+        type: '给排水工程',
+        value: 2
+      },
+      {
+        type: '厨房工程',
+        value: 1
+      }
+    ]
+    const columnSpace = new Column('chart-column-space', {
+      data: dataSpace,
+      appendPadding: [20, 8, 30, 8],
+      xField: 'area',
+      yField: 'value',
+      color: '#52a5df',
+      columnWidthRatio: 0.3,
+      minColumnWidth: 20,
+      maxColumnWidth: 70,
+      label: {
+        position: 'top',
+        style: {
+          fill: '#000000'
+        }
+      },
+      xAxis: {
+        label: {
+          autoHide: false,
+          autoRotate: true
+        }
+      }
+    })
+    columnSpace.render()
+    const columnType = new Column('chart-column-type', {
+      data: dataType,
+      appendPadding: [20, 8, 40, 8],
+      xField: 'type',
+      yField: 'value',
+      color: '#ffc700',
+      columnWidthRatio: 0.3,
+      minColumnWidth: 20,
+      maxColumnWidth: 70,
+      label: {
+        position: 'top',
+        style: {
+          fill: '#000000'
+        }
+      },
+      xAxis: {
+        label: {
+          autoHide: false,
+          autoRotate: true
+        }
+      }
+    })
+    columnType.render()
+  </script>
+</body>
+</html>
