@@ -8,18 +8,21 @@
   <style>
     /* 打印样式 */
     @media print {
+      /* html {
+        background: #efefef;
+      }
       body {
-        background-color: #fff;
-      }
-      .table-head {
-        background-color: #9bc0eb;
-      }
-      .page-start {
-        page-break-before: always;
+        background: #fff;
+      } */
+      html, body {
+        width: 210mm;
+        height: 297mm;
+        box-sizing: border-box;
       }
     }
     @page {
       size: A4 portrait;
+      margin: 20mm 15mm;
 
       /* 以下设置常见浏览器不支持 */
       /* @bottom-left, @bottom-center, @bottom-right {
@@ -39,7 +42,7 @@
     /* 页边距 5mm - 20px */
     /* 模拟页边距：(80px 60px) (20mm 15mm) */
     html {
-      background: #efefef;
+      background: #fff;
     }
     body {
       width: 794px;
@@ -49,8 +52,8 @@
       font-size: 14px;
     }
     .page {
-      min-height: 1123px;
-      padding: 80px 60px;
+      /* min-height: 1123px; */
+      /* padding: 80px 60px; */
       box-sizing: border-box;
     }
     /* 另起页面 */
@@ -212,7 +215,7 @@
         </tbody>
       </table>
     </section>
-    <section class="page">
+    <section class="page page-start">
       <h2>二、查验数据分析</h2>
       <h3>查验数据统计</h3>
       <h4 style="text-align: center;">查验问题空间分布</h4>
