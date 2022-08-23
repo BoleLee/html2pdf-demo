@@ -5,6 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>房屋查验报告</title>
+  <script type="text/javascript" src="https://unpkg.com/@antv/g2plot@latest/dist/g2plot.min.js"></script>
   <style>
     /* 打印样式 */
     @media print {
@@ -447,9 +448,18 @@
     </div>
   </footer> -->
 
-  <script type="text/javascript" src="https://unpkg.com/@antv/g2plot@latest/dist/g2plot.min.js"></script>
-  <script>
-    const { Column } = G2Plot
+  <script type="text/javascript">
+    // test canvas
+    const canvas = document.getElementById('canvasTest');
+    const ctx = canvas.getContext('2d');
+
+    ctx.fillStyle = 'green';
+    ctx.fillRect(10, 10, 150, 100);
+
+    const textElm = document.getElementById('textElm')
+    textElm.innerHTML = '<p>这是一串html字符串</p>'
+    
+    const Column = G2Plot.Column
     const dataSpace = [
       {
         area: '公卫',
@@ -532,16 +542,6 @@
       }
     })
     columnType.render()
-
-    // test canvas
-    const canvas = document.getElementById('canvasTest');
-    const ctx = canvas.getContext('2d');
-
-    ctx.fillStyle = 'green';
-    ctx.fillRect(10, 10, 150, 100);
-
-    const textElm = document.getElementById('textElm')
-    textElm.innerHTML = '<p>这是一串html字符串</p>'
   </script>
 </body>
 </html>
