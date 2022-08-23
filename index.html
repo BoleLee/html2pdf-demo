@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>房屋查验报告</title>
   <script type="text/javascript" src="https://unpkg.com/@antv/g2plot@latest/dist/g2plot.min.js"></script>
-  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@5.3.3/dist/echarts.js"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@5.3.3/dist/echarts.min.js"></script>
   <style>
     /* 打印样式 */
     @media print {
@@ -499,7 +499,7 @@
     testG2Plot.innerHTML = 'G2Plot.Column: ' + G2Plot.Column + '<br>' +
       'window.G2Plot.Column: ' + window.G2Plot.Column
     
-    const Column = window.G2Plot.Column
+    // const Column = window.G2Plot.Column
     const dataSpace = [
       {
         area: '公卫',
@@ -536,7 +536,7 @@
         value: 1
       }
     ]
-    const columnSpace = new Column('chart-column-space', {
+    const columnSpace = new G2Plot.Column('chart-column-space', {
       data: dataSpace,
       height: 400,
       appendPadding: [20, 8, 30, 8],
@@ -560,7 +560,7 @@
       }
     })
     columnSpace.render()
-    const columnType = new Column('chart-column-type', {
+    const columnType = new G2Plot.Column('chart-column-type', {
       data: dataType,
       height: 400,
       appendPadding: [20, 8, 40, 8],
