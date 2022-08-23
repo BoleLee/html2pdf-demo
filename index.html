@@ -15,7 +15,7 @@
         background: #fff;
       } */
       html, body {
-        width: 210mm;
+        /* width: 210mm; */
         height: 297mm;
         box-sizing: border-box;
       }
@@ -49,7 +49,7 @@
       margin: auto;
       background: #fff;
       box-sizing: border-box;
-      font-size: 14px;
+      font-size: 18px;
     }
     .page {
       /* min-height: 1123px; */
@@ -58,6 +58,11 @@
     }
     /* 另起页面 */
     .page-start {
+      page-break-before: always;
+    }
+    /* 封面、封底 */
+    .img-page {
+      page-break-inside: avoid;
       page-break-before: always;
     }
 
@@ -70,7 +75,7 @@
       margin: 20px auto;
     }
     .header-tip {
-      font-size: 12px;
+      font-size: 16px;
       line-height: 1.6;
       margin: 50px auto 20px;
     }
@@ -86,7 +91,8 @@
       border: 1px solid #000;
     }
     th, td {
-      padding: 5px 10px;
+      line-height: 1.8;
+      padding: 10px 15px;
       box-sizing: border-box;
     }
     td.img-cell {
@@ -95,15 +101,18 @@
     .table-head {
       background-color: #9bc0eb;
     }
+    thead, tfoot, tr, th, td {
+      page-break-inside: avoid;
+    }
 
     .statistics-tip {
-      font-size: 12px;
+      font-size: 16px;
       line-height: 1.8;
     }
   </style>
 </head>
 <body>
-  <header class="page" style="width: 80%; margin: 0 auto;">
+  <!-- <div class="page" style="width: 80%; margin: 0 auto;">
     <h1 class="tac">XX验房第三方</h1>
     <h1 class="tac">房屋查验咨询报告</h1>
     <div class="header-contact">
@@ -119,7 +128,10 @@
     <div style="text-align: right;">
       <img src="imgs/header-qrcode.jpeg" alt="某某验房监理" width="auto" height="200">
     </div>
-  </header>
+  </div> -->
+  <div class="img-page">
+    <img src="imgs/img-header.jpg" alt="封面" width="100%" height="auto">
+  </div>
   <main class="page-start">
     <section class="page">
       <h2>一、房屋基础信息</h2>
@@ -220,14 +232,14 @@
       <h3>查验数据统计</h3>
       <h4 style="text-align: center;">查验问题空间分布</h4>
       <div id="chart-column-space"><!-- 柱状图 --></div>
-      <div class="statistics-tip">
+      <div class="statistics-tip" style="max-height: 100px; overflow-y: hidden;">
         本次查验共发现质量问题10条，问题最多的前三个空间部位是：公卫 4条，主卫 3条，厨房 3条。
       </div>
 
-      <h4 style="text-align: center; margin-top: 70px;">查验问题分类统计</h4>
+      <h4 style="text-align: center; margin-top: 20px;">查验问题分类统计</h4>
       <div id="chart-column-type"><!-- 柱状图 --></div>
       <div class="statistics-tip">
-        <p>本次查验工作涉及5大类的5项检查项目，问题最多的前三个类别是：电气工程 3条；卫浴工程 2条；顶棚工程 2条。</p>
+        <p style="max-height: 100px; overflow-y: hidden;">本次查验工作涉及5大类的5项检查项目，问题最多的前三个类别是：电气工程 3条；卫浴工程 2条；顶棚工程 2条。</p>
         <p>各检查项详细数据如下：</p>
         <table>
           <tbody>
@@ -271,6 +283,10 @@
       <div>
         <img src="imgs/std-report.jpg" alt="指数报告" width="100%" height="auto">
       </div>
+    </section>
+    <section class="page-start">
+      <h2>canvas测试</h2>
+      <canvas id="canvasTest"></canvas>
     </section>
     <section class="page page-start">
       <h2>三、房屋查验内容</h2>
@@ -403,7 +419,10 @@
       </table>
     </section>
   </main>
-  <footer class="page page-start" style="width: 80%; margin: 0 auto;">
+  <div class="img-page">
+    <img src="imgs/img-footer.jpg" alt="封底" width="100%" height="auto">
+  </div>
+  <!-- <footer class="page page-start" style="width: 80%; margin: 0 auto;">
     <h3 class="tac">查验声明</h3>
     <ol style="line-height: 2.8;">
       <li>本报告仅供雇主了解所委托查验的房屋客观信息（真实状况）之用，未经本公司同意，不得用于广告、商业宣传等商业行为。</li>
@@ -422,7 +441,7 @@
     <div style="text-align: right;">
       <img src="imgs/header-qrcode.jpeg" alt="某某验房监理" width="auto" height="200">
     </div>
-  </footer>
+  </footer> -->
 
   <script type="text/javascript" src="https://unpkg.com/@antv/g2plot@latest/dist/g2plot.min.js"></script>
   <script>
@@ -509,6 +528,13 @@
       }
     })
     columnType.render()
+
+    // test canvas
+    const canvas = document.getElementById('canvasTest');
+    const ctx = canvas.getContext('2d');
+
+    ctx.fillStyle = 'green';
+    ctx.fillRect(10, 10, 150, 100);
   </script>
 </body>
 </html>
