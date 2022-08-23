@@ -70,11 +70,11 @@ page-break-inside | avoid, auto | 该元素避免分页，保持在同一页
 
 ### 图表：是否支持canvas/svg
 
-svg标签跟其他html标签无异，可正常打印
+svg标签跟其他html标签无异，可正常打印，测试了某icon
 
-canvas标签，需支持javascript代码执行，只要脚本正常执行，也能打印
+canvas标签，需支持javascript代码执行，只要脚本正常执行，也能打印，测试了canvas绘制矩形。
 
-图表多是使用第三方库绘制的，是否支持第三方库？
+图表多是使用第三方库绘制的，是否支持第三方库？测试了G2Plot, echarts, 其中G2Plot在CutyCapt打印下失败
 
 图表实现后转换为图片？
 
@@ -98,9 +98,17 @@ canvas标签，需支持javascript代码执行，只要脚本正常执行，也�
 npx http-server ./
 ```
 
+结果：本地启动看到什么，打印后基本是什么
+
 ### 检验打印效果-CutyCapt
 
 一个跨平台的命令行工具，可将网页转化为pdf、图片等格式
+
+结果：
+
+- 大致效果能实现，细节没有Chrome打印那么好
+- G2Plot绘制的图出不来，echarts绘制的正常显示
+- 表格单元格设置了避免分页，但CutyCapt打印无效
 
 ## 参考资源
 
@@ -108,3 +116,4 @@ npx http-server ./
 - [打印样式](https://segmentfault.com/a/1190000010145260)
 - [CutyCapt ubuntu](https://manpages.ubuntu.com/manpages/jammy/man1/cutycapt.1.html)
 - [CutyCapt ubuntu](http://cutycapt.sourceforge.net/)
+- [echarts服务端渲染](https://echarts.apache.org/handbook/zh/how-to/cross-platform/server)

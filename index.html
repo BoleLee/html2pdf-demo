@@ -238,13 +238,15 @@
       <h2>二、查验数据分析</h2>
       <h3>查验数据统计</h3>
       <h4 style="text-align: center;">查验问题空间分布</h4>
-      <div id="chart-column-space" style="height: 400px;"><!-- 柱状图 --></div>
+      <div id="chartColumnSpaceG2Plot"><!-- 柱状图 --></div>
+      <div id="chartColumnSpace" style="width: 100%; height: 400px;"><!-- 柱状图 --></div>
       <div class="statistics-tip" style="max-height: 100px; overflow-y: hidden;">
         本次查验共发现质量问题10条，问题最多的前三个空间部位是：公卫 4条，主卫 3条，厨房 3条。
       </div>
 
       <h4 style="text-align: center; margin-top: 20px;">查验问题分类统计</h4>
-      <div id="chart-column-type" style="height: 400px;"><!-- 柱状图 --></div>
+      <div id="chartColumnKindG2Plot"><!-- 柱状图 --></div>
+      <div id="chartColumnKind" style="width: 100%; height: 400px;"><!-- 柱状图 --></div>
       <div class="statistics-tip">
         <p style="max-height: 100px; overflow-y: hidden;">本次查验工作涉及5大类的5项检查项目，问题最多的前三个类别是：电气工程 3条；卫浴工程 2条；顶棚工程 2条。</p>
         <p>各检查项详细数据如下：</p>
@@ -300,8 +302,6 @@
       <div id="textElm"></div>
       <h2>echarts</h2>
       <div id="testEcharts" style="width: 600px; height:400px;"></div>
-      <h2>G2Plot</h2>
-      <div id="testG2Plot"></div>
     </section>
     <section class="page page-start">
       <h2>三、房屋查验内容</h2>
@@ -466,8 +466,8 @@
     ctx.fillStyle = 'green';
     ctx.fillRect(10, 10, 150, 100);
 
-    const textElm = document.getElementById('textElm')
-    textElm.innerHTML = '<p>这是一串html字符串</p>'
+    const textElm = document.getElementById('textElm');
+    textElm.innerHTML = '<p>这是一串html字符串</p>';
 
     // 基于准备好的dom，初始化echarts实例
     var myChart = echarts.init(document.getElementById('testEcharts'));
@@ -494,12 +494,65 @@
     };
     // 使用刚指定的配置项和数据显示图表。
     myChart.setOption(option);
-        
-    const testG2Plot = document.getElementById('testG2Plot')
-    testG2Plot.innerHTML = 'G2Plot.Column: ' + G2Plot.Column + '<br>' +
-      'window.G2Plot.Column: ' + window.G2Plot.Column
+
+    // 空间分布统计图
+    const chartSpace = echarts.init(document.getElementById('chartColumnSpace'));
+    const spaceOption = {
+      title: {
+        // text: '查验问题空间分布'
+      },
+      tooltip: {},
+      legend: false,
+      xAxis: {
+        data: ['公卫', '主卫', '厨房']
+      },
+      yAxis: {},
+      series: [
+        {
+          name: '问题数',
+          type: 'bar',
+          data: [4, 3, 3],
+          color: '#52a5df',
+          // barWidth: '30%',
+          barCategoryGap: '10%',
+          barMaxWidth: 70,
+          label: {
+            show: true,
+            position: 'top'
+          }
+        }
+      ]
+    };
+    chartSpace.setOption(spaceOption);
+
+    // 分类统计图
+    const chartKind = echarts.init(document.getElementById('chartColumnKind'));
+    const kindOption = {
+      title: {},
+      tooltip: {},
+      legend: false,
+      xAxis: {
+        data: ['电气工程', '卫浴工程', '顶棚工程', '给排水工程', '厨房工程']
+      },
+      yAxis: {},
+      series: [
+        {
+          name: '问题数',
+          type: 'bar',
+          data: [3, 2, 2, 2, 1],
+          color: '#ffc700',
+          barWidth: '30%',
+          barMaxWidth: 70,
+          label: {
+            show: true,
+            position: 'top'
+          }
+        }
+      ]
+    };
+    chartKind.setOption(kindOption);
+
     
-    // const Column = window.G2Plot.Column
     const dataSpace = [
       {
         area: '公卫',
@@ -513,7 +566,7 @@
         area: '厨房',
         value: 3
       }
-    ]
+    ];
     const dataType = [
       {
         type: '电气工程',
@@ -535,8 +588,8 @@
         type: '厨房工程',
         value: 1
       }
-    ]
-    const columnSpace = new G2Plot.Column('chart-column-space', {
+    ];
+    const columnSpace = new G2Plot.Column('chartColumnSpaceG2Plot', {
       data: dataSpace,
       height: 400,
       appendPadding: [20, 8, 30, 8],
@@ -558,9 +611,9 @@
           autoRotate: true
         }
       }
-    })
-    columnSpace.render()
-    const columnType = new G2Plot.Column('chart-column-type', {
+    });
+    columnSpace.render();
+    const columnType = new G2Plot.Column('chartColumnKindG2Plot', {
       data: dataType,
       height: 400,
       appendPadding: [20, 8, 40, 8],
@@ -582,8 +635,8 @@
           autoRotate: true
         }
       }
-    })
-    columnType.render()
+    });
+    columnType.render();
   </script>
 </body>
 </html>
