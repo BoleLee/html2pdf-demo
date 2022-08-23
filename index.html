@@ -5,7 +5,6 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>房屋查验报告</title>
-  <script type="text/javascript" src="https://unpkg.com/@antv/g2plot@latest/dist/g2plot.min.js"></script>
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@5.3.3/dist/echarts.min.js"></script>
   <style>
     /* 打印样式 */
@@ -119,23 +118,6 @@
   </style>
 </head>
 <body>
-  <!-- <div class="page" style="width: 80%; margin: 0 auto;">
-    <h1 class="tac">XX验房第三方</h1>
-    <h1 class="tac">房屋查验咨询报告</h1>
-    <div class="header-contact">
-      <p>验房热线：15011110000 &nbsp;&nbsp;&nbsp;&nbsp; 抖音平台：18011110000</p>
-      <p>张工电话：18011110000（微信同号）</p>
-      <p>刘工电话：15211110000（微信同号）</p>
-    </div>
-    <div class="header-tip">
-      <p>验房服务监督热线：15011110000 公司地址：某某街道某某路某某大厦某某室</p>
-      <p style="text-decoration: underline;">委托方未经平台委派验房师的以及无委托方信息留存记录的验房服务则视为无效</p>
-      <p>本报告分空间进行问题记录，现场便笺纸将各问题点标识完整，请各方拍照留存</p>
-    </div>
-    <div style="text-align: right;">
-      <img src="imgs/header-qrcode.jpeg" alt="某某验房监理" width="auto" height="200">
-    </div>
-  </div> -->
   <div class="img-page">
     <img src="https://s3.bmp.ovh/imgs/2022/08/23/bc762166ef944134.jpg" alt="封面" width="100%" height="auto">
   </div>
@@ -238,17 +220,15 @@
       <h2>二、查验数据分析</h2>
       <h3>查验数据统计</h3>
       <h4 style="text-align: center;">查验问题空间分布</h4>
-      <div id="chartColumnSpaceG2Plot"><!-- 柱状图 --></div>
       <div id="chartColumnSpace" style="width: 100%; height: 400px;"><!-- 柱状图 --></div>
-      <div class="statistics-tip" style="max-height: 100px; overflow-y: hidden;">
+      <div class="statistics-tip" style="height: 100px; overflow: hidden;">
         本次查验共发现质量问题10条，问题最多的前三个空间部位是：公卫 4条，主卫 3条，厨房 3条。
       </div>
 
       <h4 style="text-align: center; margin-top: 20px;">查验问题分类统计</h4>
-      <div id="chartColumnKindG2Plot"><!-- 柱状图 --></div>
       <div id="chartColumnKind" style="width: 100%; height: 400px;"><!-- 柱状图 --></div>
       <div class="statistics-tip">
-        <p style="max-height: 100px; overflow-y: hidden;">本次查验工作涉及5大类的5项检查项目，问题最多的前三个类别是：电气工程 3条；卫浴工程 2条；顶棚工程 2条。</p>
+        <p style="height: 100px; overflow: hidden;">本次查验工作涉及5大类的5项检查项目，问题最多的前三个类别是：电气工程 3条；卫浴工程 2条；顶棚工程 2条。</p>
         <p>各检查项详细数据如下：</p>
         <table>
           <tbody>
@@ -292,16 +272,6 @@
       <div>
         <img src="https://s3.bmp.ovh/imgs/2022/08/23/5c07438c3721aa0b.jpg" alt="指数报告" width="100%" height="auto">
       </div>
-    </section>
-    <section class="page-start">
-      <h2>canvas测试</h2>
-      <canvas id="canvasTest"></canvas>
-      <h2>svg测试</h2>
-      <?xml version="1.0" encoding="UTF-8"?><svg width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 18V42H39V18L24 6L9 18Z" fill="none" stroke="#333" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><path d="M19 29V42H29V29H19Z" fill="none" stroke="#333" stroke-width="4" stroke-linejoin="round"/><path d="M9 42H39" stroke="#333" stroke-width="4" stroke-linecap="round"/></svg>
-      <h2>js插入文本，测试javascript是否执行</h2>
-      <div id="textElm"></div>
-      <h2>echarts</h2>
-      <div id="testEcharts" style="width: 600px; height:400px;"></div>
     </section>
     <section class="page page-start">
       <h2>三、房屋查验内容</h2>
@@ -437,64 +407,8 @@
   <div class="img-page">
     <img src="https://s3.bmp.ovh/imgs/2022/08/23/4c93af5d19d3f327.jpg" alt="封底" width="100%" height="auto">
   </div>
-  <!-- <footer class="page page-start" style="width: 80%; margin: 0 auto;">
-    <h3 class="tac">查验声明</h3>
-    <ol style="line-height: 2.8;">
-      <li>本报告仅供雇主了解所委托查验的房屋客观信息（真实状况）之用，未经本公司同意，不得用于广告、商业宣传等商业行为。</li>
-      <li>本报告涂改无效。</li>
-      <li>如对本查验报告有异议请于收到报告之日起十五天提出。</li>
-      <li>未经书面许可，不得部分复制本查验报告；报告局部复印无效。</li>
-      <li>对本报告未提及项目，本公司不予评判。</li>
-      <li>报告解释权为本公司所有。</li>
-    </ol>
-    <h1 class="tac" style="margin: 40px auto;">交一套业主心中的好房子！</h1>
-    <div class="header-tip">
-      <p>验房服务监督热线：15011110000</p>
-      <p style="text-decoration: underline;">委托方未经平台委派验房师的以及无委托方信息留存记录的验房服务则视为无效</p>
-      <p>本报告分空间进行问题记录，现场便笺纸将各问题点标识完整，请各方拍照留存</p>
-    </div>
-    <div style="text-align: right;">
-      <img src="imgs/header-qrcode.jpeg" alt="某某验房监理" width="auto" height="200">
-    </div>
-  </footer> -->
 
   <script type="text/javascript">
-    // test canvas
-    const canvas = document.getElementById('canvasTest');
-    const ctx = canvas.getContext('2d');
-
-    ctx.fillStyle = 'green';
-    ctx.fillRect(10, 10, 150, 100);
-
-    const textElm = document.getElementById('textElm');
-    textElm.innerHTML = '<p>这是一串html字符串</p>';
-
-    // 基于准备好的dom，初始化echarts实例
-    var myChart = echarts.init(document.getElementById('testEcharts'));
-    // 指定图表的配置项和数据
-    var option = {
-      title: {
-        text: 'ECharts 入门示例'
-      },
-      tooltip: {},
-      legend: {
-        data: ['销量']
-      },
-      xAxis: {
-        data: ['衬衫', '羊毛衫', '雪纺衫', '裤子', '高跟鞋', '袜子']
-      },
-      yAxis: {},
-      series: [
-        {
-          name: '销量',
-          type: 'bar',
-          data: [5, 20, 36, 10, 10, 20]
-        }
-      ]
-    };
-    // 使用刚指定的配置项和数据显示图表。
-    myChart.setOption(option);
-
     // 空间分布统计图
     const chartSpace = echarts.init(document.getElementById('chartColumnSpace'));
     const spaceOption = {
@@ -551,92 +465,6 @@
       ]
     };
     chartKind.setOption(kindOption);
-
-    
-    const dataSpace = [
-      {
-        area: '公卫',
-        value: 4
-      },
-      {
-        area: '主卫',
-        value: 3
-      },
-      {
-        area: '厨房',
-        value: 3
-      }
-    ];
-    const dataType = [
-      {
-        type: '电气工程',
-        value: 3
-      },
-      {
-        type: '卫浴工程',
-        value: 2
-      },
-      {
-        type: '顶棚工程',
-        value: 2
-      },
-      {
-        type: '给排水工程',
-        value: 2
-      },
-      {
-        type: '厨房工程',
-        value: 1
-      }
-    ];
-    const columnSpace = new G2Plot.Column('chartColumnSpaceG2Plot', {
-      data: dataSpace,
-      height: 400,
-      appendPadding: [20, 8, 30, 8],
-      xField: 'area',
-      yField: 'value',
-      color: '#52a5df',
-      columnWidthRatio: 0.3,
-      minColumnWidth: 20,
-      maxColumnWidth: 70,
-      label: {
-        position: 'top',
-        style: {
-          fill: '#000000'
-        }
-      },
-      xAxis: {
-        label: {
-          autoHide: false,
-          autoRotate: true
-        }
-      }
-    });
-    columnSpace.render();
-    const columnType = new G2Plot.Column('chartColumnKindG2Plot', {
-      data: dataType,
-      height: 400,
-      appendPadding: [20, 8, 40, 8],
-      xField: 'type',
-      yField: 'value',
-      color: '#ffc700',
-      columnWidthRatio: 0.3,
-      minColumnWidth: 20,
-      maxColumnWidth: 70,
-      label: {
-        position: 'top',
-        style: {
-          fill: '#000000'
-        }
-      },
-      xAxis: {
-        label: {
-          autoHide: false,
-          autoRotate: true
-        }
-      }
-    });
-    columnType.render();
   </script>
 </body>
 </html>
