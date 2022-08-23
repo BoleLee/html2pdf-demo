@@ -14,31 +14,49 @@ A4页面大小 (210*297)mm，打印dpi: 96。换算相当于 (794*1123)px，含�
 
 页边距 5mm 相当于约 20px, 模拟页边距：(80px 60px), 相当于(20mm 15mm)
 
+但页边距正确方式由打印样式来控制，无需在页面内容中模拟，页面主体内容将被打印在页面内容区域，只需设置网页主体宽度，使得与打印后预览效果接近即可。
+
+打印后常规字体大小18px，效果较为合适。
+
 故此页面样式设置如下：
 
 ```css
+/* 打印样式 */
+@media print {
+  html, body {
+    height: 297mm;
+    box-sizing: border-box;
+  }
+}
+@page {
+  size: A4 portrait;
+  margin: 20mm 15mm;
+}
+
 html {
-  background: #efefef;
+  background: #fff;
 }
 body {
 	width: 794px;
   margin: auto;
   background: #fff;
   box-sizing: border-box;
-  font-size: 14px;
+  font-size: 18px;
 }
-.page {
+/* .page {
 	min-height: 1123px;
   padding: 80px 60px;
   box-sizing: border-box;
-}
+} */
 ```
-
-这样即可实现不满一页长度的内容至少占一页高度。但对于1<x<n页的，接在后面的内容，还需要知道怎么控制其另起一页。
 
 ### 分页：如何另起一页？
 
-有了这个属性，使内容撑满一页这个设置，在分页上就显得多余了。
+属性 | 可选值 | 含义
+---- | ---- | ----
+page-break-before | auto、always、avoid、left、right、recto、verso | 开头重起一页
+page-break-after | auto、always、avoid、left、right、recto、verso | 结尾换页
+page-break-inside | avoid, auto | 该元素避免分页，保持在同一页
 
 ```css
 .page-start {
@@ -50,11 +68,13 @@ body {
 
 暂未实践
 
-### 图表
+### 图表：是否支持canvas/svg
 
-canvas或svg, 是否可直接转为pdf, 即html2pdf是否支持canvas, svg，这个问题，照样使用Chrome打印来验证。
+svg标签跟其他html标签无异，可正常打印
 
-验证结果：Chrome可正常打印canvas
+canvas标签，需支持javascript代码执行，只要脚本正常执行，也能打印
+
+图表多是使用第三方库绘制的，是否支持第三方库？
 
 图表实现后转换为图片？
 
@@ -62,9 +82,7 @@ canvas或svg, 是否可直接转为pdf, 即html2pdf是否支持canvas, svg，这
 
 若要转换为图片，本质上应该都是将canvas转为图片，调用toDataURL，但html2pdf支持canvas标签，那转换为图片似乎就没有必要了。
 
-但这也并不阻碍选择哪个图表库来绘图，看了下G2Plot和ECharts5, 没有直接暴露转换为图片的API。
-
-### 检验打印效果
+### 检验打印效果-Chrome浏览器自带
 
 本地通过Chrome浏览器的打印功能来检验打印效果，Command+P键调起。
 
@@ -80,7 +98,13 @@ canvas或svg, 是否可直接转为pdf, 即html2pdf是否支持canvas, svg，这
 npx http-server ./
 ```
 
+### 检验打印效果-CutyCapt
+
+一个跨平台的命令行工具，可将网页转化为pdf、图片等格式
+
 ## 参考资源
 
 - [html A4打印尺寸设置](https://icode.best/i/01425742130811)
 - [打印样式](https://segmentfault.com/a/1190000010145260)
+- [CutyCapt ubuntu](https://manpages.ubuntu.com/manpages/jammy/man1/cutycapt.1.html)
+- [CutyCapt ubuntu](http://cutycapt.sourceforge.net/)
