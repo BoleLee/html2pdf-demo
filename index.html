@@ -457,9 +457,11 @@
     ctx.fillRect(10, 10, 150, 100);
 
     const textElm = document.getElementById('textElm')
-    textElm.innerHTML = '<p>这是一串html字符串</p>'
+    textElm.innerHTML = `<p>这是一串html字符串</p>
+      <p>G2Plot.Column: ${G2Plot.Column}</p>
+      <p>window.G2Plot.Column: ${window.G2Plot.Column}</p>`
     
-    const Column = G2Plot.Column
+    const Column = window.G2Plot.Column
     const dataSpace = [
       {
         area: '公卫',
