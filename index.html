@@ -14,13 +14,14 @@
         margin: 20mm 15mm;
 
         /* 以下设置常见浏览器不支持 */
-        /* @bottom-left, @bottom-center, @bottom-right {
+        @bottom-left, @bottom-center, @bottom-right {
           border-top: 1px solid gray;
         }
         @bottom-center {
           content: "第" counter(page) "页";
-        } */
+        }
       }
+      
       html, body {
         height: 297mm;
         box-sizing: border-box;
@@ -46,6 +47,7 @@
       size: A4 portrait;
       margin: 20mm 15mm;
     }
+    
 
     /* 样式重置 */
     p {
@@ -86,7 +88,7 @@
     .img-page .img-a4 {
       width: 210mm;
       height: 297mm;
-      margin: -20mm -15mm;
+      margin: auto -15mm;
     }
 
     .tac {
