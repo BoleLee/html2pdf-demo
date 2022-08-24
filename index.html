@@ -11,15 +11,15 @@
     @media print {
       @page {
         size: A4 portrait;
-        margin: 20mm 15mm;
+        /* margin: 20mm 15mm; */
 
         /* 以下设置常见浏览器不支持 */
-        @bottom-left, @bottom-center, @bottom-right {
+        /* @bottom-left, @bottom-center, @bottom-right {
           border-top: 1px solid gray;
         }
         @bottom-center {
           content: "第" counter(page) "页";
-        }
+        } */
       }
       
       html, body {
@@ -45,7 +45,7 @@
     }
     @page {
       size: A4 portrait;
-      margin: 20mm 15mm;
+      /* margin: 20mm 15mm; */
     }
     
 
@@ -61,12 +61,11 @@
       background: #fff;
     }
     body {
-      width: 180mm;
+      width: 210mm;
       margin: auto;
       background: #fff;
       box-sizing: border-box;
       font-size: 18px;
-      padding-top: 1px;
     }
     .page {
       /* min-height: 1123px; */
@@ -81,14 +80,14 @@
     .img-page {
       page-break-inside: avoid;
       /* page-break-before: always; */
-      height: 257mm;
+      /* height: 257mm; */
       overflow: visible;
       text-align: center;
     }
     .img-page .img-a4 {
       width: 210mm;
       height: 297mm;
-      margin: auto -15mm;
+      /* margin: auto -15mm; */
     }
 
     .tac {
@@ -135,7 +134,7 @@
 </head>
 <body>
   <div class="img-page">
-    <img src="https://resource6.9yuntu.cn/png/png_BYv8kUCW4HEUiuA5l7BUtB_page1.png?AccessKeyId=QFWWVG9BQLRVZ0MWJE0R&Expires=1661339995&Signature=X4uQsqgt8phaWS9eOE3U96LulRc%3D" alt="封面" class="img-a4">
+    <img src="header.jpg" alt="封面" class="img-a4">
   </div>
   <main class="page-start">
     <section class="page page-start">
@@ -286,7 +285,7 @@
         </table>
       </div>
       <div>
-        <img src="https://s3.bmp.ovh/imgs/2022/08/23/5c07438c3721aa0b.jpg" alt="指数报告" width="100%" height="auto">
+        <img src="report-std.jpg" alt="指数报告" width="100%" height="auto">
       </div>
     </section>
     <section class="page page-start">
@@ -421,7 +420,7 @@
     </section>
   </main>
   <div class="img-page">
-    <img src="https://resource6.9yuntu.cn/png/png_EaSM0zjOd8KbtqlP9JAIDD_page1.png?AccessKeyId=QFWWVG9BQLRVZ0MWJE0R&Expires=1661340049&Signature=LF%2FunrykjmKVp7xPXqtaUKa7fgs%3D" alt="封底" class="img-a4">
+    <img src="footer.jpg" alt="封底" class="img-a4">
   </div>
 
   <script type="text/javascript">
