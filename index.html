@@ -27,7 +27,8 @@
       }
       h1, h2, h3, h4, h5, h6,
       thead, tfoot, tr, th, td,
-      li {
+      li,
+      canvas {
         page-break-inside: avoid;
       }
       body {
@@ -40,6 +41,10 @@
       thead, tfoot {
         display: table-row-group;
       }
+    }
+    @page {
+      size: A4 portrait;
+      margin: 20mm 15mm;
     }
 
     /* 样式重置 */
@@ -73,7 +78,8 @@
     /* 封面、封底 */
     .img-page {
       page-break-inside: avoid;
-      page-break-before: always;
+      /* page-break-before: always; */
+      height: 257mm;
       overflow: visible;
       text-align: center;
     }
