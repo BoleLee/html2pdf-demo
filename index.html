@@ -54,11 +54,12 @@
       background: #fff;
     }
     body {
-      width: 794px;
+      width: 180mm;
       margin: auto;
       background: #fff;
       box-sizing: border-box;
       font-size: 18px;
+      padding-top: 1px;
     }
     .page {
       /* min-height: 1123px; */
@@ -73,6 +74,13 @@
     .img-page {
       page-break-inside: avoid;
       page-break-before: always;
+      overflow: visible;
+      text-align: center;
+    }
+    .img-page .img-a4 {
+      width: 210mm;
+      height: auto;
+      margin: -20mm -15mm;
     }
 
     .tac {
@@ -119,7 +127,7 @@
 </head>
 <body>
   <div class="img-page">
-    <img src="https://s3.bmp.ovh/imgs/2022/08/23/bc762166ef944134.jpg" alt="封面" width="100%" height="auto">
+    <img src="https://s3.bmp.ovh/imgs/2022/08/24/2847f899f0cc83d0.jpg" alt="封面" class="img-a4">
   </div>
   <main class="page-start">
     <section class="page page-start">
@@ -281,7 +289,7 @@
           <tr>
             <th class="table-head" style="width: 50px;">序号</th>
             <th class="table-head">问题详情</th>
-            <th class="table-head" style="width: 402px;">照片</th>
+            <th class="table-head" style="width: 412px;">照片</th>
           </tr>
         </thead>
         <tbody>
@@ -405,7 +413,7 @@
     </section>
   </main>
   <div class="img-page">
-    <img src="https://s3.bmp.ovh/imgs/2022/08/23/4c93af5d19d3f327.jpg" alt="封底" width="100%" height="auto">
+    <img src="https://s3.bmp.ovh/imgs/2022/08/24/4e7d5527acab891f.jpg" alt="封底" class="img-a4">
   </div>
 
   <script type="text/javascript">
