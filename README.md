@@ -82,6 +82,32 @@ canvas标签，需支持javascript代码执行，只要脚本正常执行，也�
 
 若要转换为图片，本质上应该都是将canvas转为图片，调用toDataURL，但html2pdf支持canvas标签，那转换为图片似乎就没有必要了。
 
+### 如何使图片占满一页
+
+封面封底是docx文档，将其转化为A4大小的图片，再插入html中，希望其占一页。
+当前使用的方案是：将其作为容器背景图片插入，需设置其大小，使视觉效果接近原docx编辑效果；该方案仅在CutyCapt打印后刚好占一页，Chrome打印后超一页。
+
+```css
+.img-page {
+  page-break-inside: avoid;
+  page-break-before: always;
+  /* height: 257mm; */
+  overflow: visible;
+  text-align: center;
+  height: 360mm;
+  background-color: #efefef;
+  background-repeat: no-repeat;
+  background-size: 125% 100%;
+  background-position: center;
+}
+.img-page.header-bg {
+  background-image: url(header.jpg);
+}
+.img-page.footer-bg {
+  background-image: url(footer.jpg);
+}
+```
+
 ### 检验打印效果-Chrome浏览器自带
 
 本地通过Chrome浏览器的打印功能来检验打印效果，Command+P键调起。
@@ -98,7 +124,10 @@ canvas标签，需支持javascript代码执行，只要脚本正常执行，也�
 npx http-server ./
 ```
 
-结果：本地启动看到什么，打印后基本是什么
+结果：
+
+- 本地启动看到什么，打印后基本是什么
+- 页眉页脚设置无效，只能在自带的设置中勾选是否加默认页眉页脚，无法自定义
 
 ### 检验打印效果-CutyCapt
 
@@ -109,6 +138,8 @@ npx http-server ./
 - 大致效果能实现，细节没有Chrome打印那么好
 - G2Plot绘制的图出不来，echarts绘制的正常显示
 - 表格单元格设置了避免分页，但CutyCapt打印无效
+- 页边距设置无效，其页面长度可容纳内容，明显比Chrome打印的多
+- 页眉页脚设置无效
 
 ## 参考资源
 
