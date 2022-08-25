@@ -66,7 +66,7 @@ page-break-inside | avoid, auto | 该元素避免分页，保持在同一页
 
 ### 打印样式如何控制页眉页脚？
 
-暂未实践
+html中用`@bottom-left, @bottom-center, @bottom-right`等属性
 
 ### 图表：是否支持canvas/svg
 
@@ -127,7 +127,7 @@ npx http-server ./
 结果：
 
 - 本地启动看到什么，打印后基本是什么
-- 页眉页脚设置无效，只能在自带的设置中勾选是否加默认页眉页脚，无法自定义
+- 页眉页脚样式设置无效，只能在自带的设置中勾选是否加默认页眉页脚，无法自定义
 
 ### 检验打印效果-CutyCapt
 
@@ -139,7 +139,18 @@ npx http-server ./
 - G2Plot绘制的图出不来，echarts绘制的正常显示
 - 表格单元格设置了避免分页，但CutyCapt打印无效
 - 页边距设置无效，其页面长度可容纳内容，明显比Chrome打印的多
-- 页眉页脚设置无效
+- 页眉页脚样式设置无效，未找到参数设置
+
+### 检验打印效果-wkhtmltopdf
+
+1. 开启本地服务：报告html页面：http://127.0.0.1:8080/  页眉html页面：http://127.0.0.1:8080/page-header.html
+2. 本地安装 wkhtmltopdf：brew install wkhtmltopdf
+3. 运行命令输出pdf: wkhtmltopdf --header-html http://127.0.0.1:8080/page-header.html http://127.0.0.1:8080/ 1_v46.pdf
+
+- 效果与Chrome打印接近
+- 表格单元格没有被换页，表格换页有重复表头
+- 页眉由参数指定 --header-html，页眉的html须为html5，即含`<!DOCTYPE html>`
+- 页脚参数 --footer-center 加页脚页码，测试无效？
 
 ## 参考资源
 
@@ -148,3 +159,4 @@ npx http-server ./
 - [CutyCapt ubuntu](https://manpages.ubuntu.com/manpages/jammy/man1/cutycapt.1.html)
 - [CutyCapt ubuntu](http://cutycapt.sourceforge.net/)
 - [echarts服务端渲染](https://echarts.apache.org/handbook/zh/how-to/cross-platform/server)
+- [wkhtmltopdf参数解读](https://www.cnblogs.com/mianbaoshu/p/13366074.html)

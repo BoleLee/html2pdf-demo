@@ -11,15 +11,15 @@
     @media print {
       @page {
         size: A4 portrait;
-        /* margin: 20mm 15mm; */
+        /* margin: 5mm; */
 
         /* 以下设置常见浏览器不支持 */
-        @bottom-left, @bottom-center, @bottom-right {
+        /* @bottom-left, @bottom-center, @bottom-right {
           border-top: 1px solid gray;
         }
         @bottom-center {
           content: "第" counter(page) "页";
-        }
+        } */
       }
       
       html, body {
@@ -45,14 +45,14 @@
     }
     @page {
       size: A4 portrait;
-      /* margin: 20mm 15mm; */
+      /* margin: 5mm; */
 
-      @bottom-left, @bottom-center, @bottom-right {
+      /* @bottom-left, @bottom-center, @bottom-right {
         border-top: 1px solid gray;
       }
       @bottom-center {
         content: "第" counter(page) "页";
-      }
+      } */
     }
     
 
@@ -62,13 +62,12 @@
     }
     
     /* A4 (210*297)mm 96dpi (794*1123)px */
-    /* 页边距 5mm - 20px */
-    /* 模拟页边距：(80px 60px) (20mm 15mm) */
+    /* 820*1160 ? */
     html {
       background: #fff;
     }
     body {
-      width: 210mm;
+      width: 820px;
       margin: auto;
       background: #fff;
       box-sizing: border-box;
@@ -84,7 +83,7 @@
       page-break-before: always;
     }
     /* 封面、封底 */
-    .img-page {
+    .img-page-bg {
       page-break-inside: avoid;
       page-break-before: always;
       /* height: 257mm; */
@@ -96,11 +95,10 @@
       background-size: 125% 100%;
       background-position: center;
     }
-    .img-page.header-bg {
-      background-image: url(header.jpg);
-    }
-    .img-page.footer-bg {
-      background-image: url(footer.jpg);
+    .img-page {
+      page-break-inside: avoid;
+      page-break-before: always;
+      text-align: center;
     }
 
     .tac {
@@ -146,7 +144,10 @@
   </style>
 </head>
 <body>
-  <div class="img-page" style="background-image: url(header.jpg)"><!-- 封面，若有多页循环此容器 --></div>
+  <div class="img-page">
+    <img src="header.jpg" alt="封面" width="auto" height="1160" class="img-a4">
+  </div>
+  <div class="img-page-bg" style="background-image: url(header.jpg)"><!-- 封面，若有多页循环此容器 --></div>
   <main class="page-start">
     <section class="page page-start">
       <h2>一、房屋基础信息</h2>
@@ -430,7 +431,10 @@
       </table>
     </section>
   </main>
-  <div class="img-page" style="background-image: url(footer.jpg);"><!-- 封底，若有多页循环此容器 --></div>
+  <div class="img-page">
+    <img src="footer.jpg" alt="封底" width="100%" height="auto" class="img-a4">
+  </div>
+  <div class="img-page-bg" style="background-image: url(footer.jpg);"><!-- 封底，若有多页循环此容器 --></div>
 
   <script type="text/javascript">
     // 空间分布统计图
