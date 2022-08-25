@@ -2,7 +2,7 @@
 
 ## 需求
 
-生成PDF文件，方案是前端用html实现基本样式，由后端使用开源库将html转为pdf, 此处主要探讨前端部分。html2pdf开源库如：iText(Java), xhtml2pdf(python), prince
+生成PDF文件，方案是前端用html实现基本样式，由后端使用开源库将html转为pdf, 此处主要探讨前端部分。html2pdf开源库如：iText(Java), wkhtmltopdf(python), prince
 
 ## 方案实践记录
 
@@ -15,6 +15,8 @@ A4页面大小 (210*297)mm，打印dpi: 96。换算相当于 (794*1123)px，含�
 页边距 5mm 相当于约 20px, 模拟页边距：(80px 60px), 相当于(20mm 15mm)
 
 但页边距正确方式由打印样式来控制，无需在页面内容中模拟，页面主体内容将被打印在页面内容区域，只需设置网页主体宽度，使得与打印后预览效果接近即可。
+
+*html中页边距设置参数，测试无效。*
 
 打印后常规字体大小18px，效果较为合适。
 
@@ -43,11 +45,6 @@ body {
   box-sizing: border-box;
   font-size: 18px;
 }
-/* .page {
-	min-height: 1123px;
-  padding: 80px 60px;
-  box-sizing: border-box;
-} */
 ```
 
 ### 分页：如何另起一页？
@@ -66,7 +63,7 @@ page-break-inside | avoid, auto | 该元素避免分页，保持在同一页
 
 ### 打印样式如何控制页眉页脚？
 
-html中用`@bottom-left, @bottom-center, @bottom-right`等属性
+html中用`@bottom-left, @bottom-center, @bottom-right`等属性，但经测试这些设置均无效，要用库的相关参数设置才可以。
 
 ### 图表：是否支持canvas/svg
 
@@ -80,12 +77,15 @@ canvas标签，需支持javascript代码执行，只要脚本正常执行，也�
 
 可将图表转成图片，再插入到报告中。
 
-若要转换为图片，本质上应该都是将canvas转为图片，调用toDataURL，但html2pdf支持canvas标签，那转换为图片似乎就没有必要了。
+若要转换为图片，本质上应该都是将canvas转为图片，调用toDataURL。但转换库支持canvas标签，转换为图片就没有必要了。
 
 ### 如何使图片占满一页
 
 封面封底是docx文档，将其转化为A4大小的图片，再插入html中，希望其占一页。
-当前使用的方案是：将其作为容器背景图片插入，需设置其大小，使视觉效果接近原docx编辑效果；该方案仅在CutyCapt打印后刚好占一页，Chrome打印后超一页。
+
+#### 使用背景图片
+
+当前使用的方案是：将其作为容器背景图片插入，需设置其大小，使视觉效果接近原docx编辑效果；该方案仅在CutyCapt打印后刚好占一页，Chrome和wkhtmltopdf打印后超一页。
 
 ```css
 .img-page {
@@ -107,6 +107,12 @@ canvas标签，需支持javascript代码执行，只要脚本正常执行，也�
   background-image: url(footer.jpg);
 }
 ```
+
+#### 使用img标签
+
+直接图片宽度铺满，高度auto, 因图片含了页边距，导出后视觉上缩小了。
+高度1160，宽度auto, 导出后比上一方案略长一点，但整体仍是缩小的。
+高度1120，宽度auto, 效果尚可
 
 ### 检验打印效果-Chrome浏览器自带
 

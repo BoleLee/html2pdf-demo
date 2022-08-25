@@ -100,6 +100,9 @@
       page-break-before: always;
       text-align: center;
     }
+    /* .img-page .img-a4 {
+      margin: -20mm auto;
+    } */
 
     .tac {
       text-align: center;
@@ -144,10 +147,11 @@
   </style>
 </head>
 <body>
+  <!-- 封面，若有多页请循环 -->
   <div class="img-page">
-    <img src="header.jpg" alt="封面" width="auto" height="1160" class="img-a4">
+    <img src="header.jpg" alt="封面" width="auto" height="1200" class="img-a4">
   </div>
-  <div class="img-page-bg" style="background-image: url(header.jpg)"><!-- 封面，若有多页循环此容器 --></div>
+  <div class="img-page-bg" style="background-image: url(header.jpg)"></div>
   <main class="page-start">
     <section class="page page-start">
       <h2>一、房屋基础信息</h2>
@@ -432,9 +436,9 @@
     </section>
   </main>
   <div class="img-page">
-    <img src="footer.jpg" alt="封底" width="100%" height="auto" class="img-a4">
+    <img src="footer.jpg" alt="封底" width="auto" height="1200" class="img-a4">
   </div>
-  <div class="img-page-bg" style="background-image: url(footer.jpg);"><!-- 封底，若有多页循环此容器 --></div>
+  <div class="img-page-bg" style="background-image: url(footer.jpg);"></div>
 
   <script type="text/javascript">
     // 空间分布统计图
