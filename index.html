@@ -136,6 +136,9 @@
     td.img-cell {
       padding: 1px;
     }
+    .table-head-room {
+      background-color: #8EAADB;
+    }
     .table-head {
       background-color: #9bc0eb;
     }
@@ -310,9 +313,12 @@
       <table>
         <thead>
           <tr>
+            <th class="table-head-room" colspan="3">房间</th>
+          <tr>
+          <tr>
             <th class="table-head" style="width: 50px;">序号</th>
             <th class="table-head">问题详情</th>
-            <th class="table-head" style="width: 412px;">照片</th>
+            <th class="table-head" style="width: 403px;">照片</th>
           </tr>
         </thead>
         <tbody>
@@ -324,7 +330,7 @@
               <p>部位：主卫</p>
             </td>
             <td class="img-cell">
-              <div style="display: flex;">
+              <div style="display: flex; flex-wrap: wrap;">
                 <img src="https://s3.bmp.ovh/imgs/2022/08/23/fd2092dd5236bcb5.jpeg" alt="" width="200" height="auto">
               </div>
             </td>
@@ -337,7 +343,7 @@
               <p>部位：公卫</p>
             </td>
             <td class="img-cell">
-              <div style="display: flex;">
+              <div style="display: flex; flex-wrap: wrap;">
                 <img src="https://s3.bmp.ovh/imgs/2022/08/23/fd2092dd5236bcb5.jpeg" alt="" width="200" height="auto">
                 <img src="https://s3.bmp.ovh/imgs/2022/08/23/fd2092dd5236bcb5.jpeg" alt="" width="200" height="auto">
               </div>
@@ -450,7 +456,11 @@
       tooltip: {},
       legend: false,
       xAxis: {
-        data: ['公卫', '主卫', '厨房']
+        data: ['公卫', '主卫', '厨房'],
+        axisLabel: {
+          interval: 0,
+          rotate: 45
+        }
       },
       yAxis: {},
       series: [
@@ -459,8 +469,8 @@
           type: 'bar',
           data: [4, 3, 3],
           color: '#52a5df',
-          // barWidth: '30%',
-          barCategoryGap: '10%',
+          barWidth: '30%',
+          // barCategoryGap: '10%',
           barMaxWidth: 70,
           label: {
             show: true,
@@ -478,14 +488,21 @@
       tooltip: {},
       legend: false,
       xAxis: {
-        data: ['电气工程', '卫浴工程', '顶棚工程', '给排水工程', '厨房工程']
+        data: ["墙砖","净高度","靠尺 墙面 地面","厨房设备","信报箱","露台/阳台防水","门框","卫生洁具","电话、信息网络","表面平整度","板材隔墙工程","送、回风管道，送、回风口"],
+        axisLabel: {
+          interval: 0,
+          rotate: 45
+        }
       },
       yAxis: {},
+      grid: {
+        bottom: '20%'
+      },
       series: [
         {
           name: '问题数',
           type: 'bar',
-          data: [3, 2, 2, 2, 1],
+          data: [4,3,3,3,2,2,2,2,1,1,1,1],
           color: '#ffc700',
           barWidth: '30%',
           barMaxWidth: 70,
