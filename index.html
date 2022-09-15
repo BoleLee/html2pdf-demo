@@ -89,10 +89,10 @@
       /* height: 257mm; */
       overflow: visible;
       text-align: center;
-      height: 360mm;
+      height: 340mm;
       background-color: #efefef;
       background-repeat: no-repeat;
-      background-size: 125% 100%;
+      background-size: 125% 106%;
       background-position: center;
     }
     .img-page {
@@ -147,6 +147,37 @@
       font-size: 16px;
       line-height: 1.8;
     }
+
+    /* 修改radio默认样式 - 最好纯CSS改为打勾 */
+    .with-fake-radio {
+      opacity: 0;
+    }
+    label {
+      position: relative;
+    }
+    .fake-radio {
+      display: inline-block;
+      width: 15px;
+      height: 15px;
+      border: 1px solid #000;
+      position: absolute;
+      left: -20px;
+      top: 0;
+      bottom: 0;
+      margin: auto 0;
+    }
+    .fake-radio.checked::after {
+      position: absolute;
+      content: "";
+      width: 5px;
+      height: 10px;
+      top: 0;
+      left: 3px;
+      border: 2px solid #000;
+      border-top: none;
+      border-left: none;
+      transform: rotate(45deg);
+    }
   </style>
 </head>
 <body>
@@ -191,7 +222,7 @@
               </div>
               <div>
                 <input type="radio" name="house_structure" id="reinforced-concrete" value="钢筋混泥土结构">
-                <label for="reinforced-concrete">钢筋混泥土结构</label>
+                <label for="reinforced-concrete">钢筋混凝土结构</label>
               </div>
               <div>
                 <input type="radio" name="house_structure" id="frame-shear-wall" value="框剪结构" checked>
@@ -201,19 +232,19 @@
             <th>房屋类型</th>
             <td>
               <div>
-                <input type="checkbox" name="house_type" id="flat-bed" value="平层" checked>
+                <input type="radio" name="house_type" id="flat-bed" value="平层" checked>
                 <label for="flat-bed">平层</label>
               </div>
               <div>
-                <input type="checkbox" name="house_type" id="duplex"value="复式">
+                <input type="radio" name="house_type" id="duplex"value="复式">
                 <label for="duplex">复式</label>
               </div>
               <div>
-                <input type="checkbox" name="house_type" id="town-house" value="联体别墅">
+                <input type="radio" name="house_type" id="town-house" value="联体别墅">
                 <label for="town-house">联体别墅</label>
               </div>
               <div>
-                <input type="checkbox" name="house_type" id="detached-villa" value="独栋别墅">
+                <input type="radio" name="house_type" id="detached-villa" value="独栋别墅">
                 <label for="detached-villa">独栋别墅</label>
               </div>
             </td>
@@ -222,16 +253,16 @@
             <th>装修程度</th>
             <td>
               <div>
-                <input type="checkbox" name="house_decoration" id="roughcast" value="毛坯房">
-                <label for="roughcast">毛坯房</label>
+                <input type="radio" name="house_decoration" id="roughcast" value="毛坯房" class="with-fake-radio">
+                <label for="roughcast"> <span class="fake-radio"></span> 毛坯房</label>
               </div>
               <div>
-                <input type="checkbox" name="house_decoration" id="sparsely-furnished"value="简装房">
-                <label for="sparsely-furnished">简装房</label>
+                <input type="radio" name="house_decoration" id="sparsely-furnished"value="简装房" class="with-fake-radio">
+                <label for="sparsely-furnished"> <span class="fake-radio"></span> 简装房</label>
               </div>
               <div>
-                <input type="checkbox" name="house_decoration" id="refined" value="精装房" checked>
-                <label for="refined">精装房</label>
+                <input type="radio" name="house_decoration" id="refined" value="精装房" checked class="with-fake-radio">
+                <label for="refined"> <span class="fake-radio checked"></span> 精装房</label>
               </div>
             </td>
             <th>房屋位置</th>
@@ -475,7 +506,8 @@
           label: {
             show: true,
             position: 'top'
-          }
+          },
+          animation: false
         }
       ]
     };
@@ -509,7 +541,8 @@
           label: {
             show: true,
             position: 'top'
-          }
+          },
+          animation: false
         }
       ]
     };
