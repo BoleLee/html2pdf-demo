@@ -158,6 +158,10 @@ npx http-server ./
 - 页眉由参数指定 --header-html，页眉的html须为html5，即含`<!DOCTYPE html>`
 - 页脚参数 --footer-center 加页脚页码，测试无效？
 
+#### wkhtmltopdf打印问题
+
+- table个别行打印后，其后面有空白，解决方案：添加样式`tr {page-break-inside: avoid !important;}`, 来自：[github issue #3405](https://github.com/wkhtmltopdf/wkhtmltopdf/issues/3405#issuecomment-414918786), 相关：#5258
+
 ## 参考资源
 
 - [html A4打印尺寸设置](https://icode.best/i/01425742130811)

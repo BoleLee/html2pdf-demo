@@ -54,6 +54,12 @@
         content: "第" counter(page) "页";
       } */
     }
+
+    /* https://github.com/wkhtmltopdf/wkhtmltopdf/issues/3405#issuecomment-414918786 */
+    /* 解决table个别行后面有空白问题 */
+    tr {
+      page-break-inside: avoid !important;
+    }
     
 
     /* 样式重置 */
@@ -129,15 +135,22 @@
       border: 1px solid #000;
     }
     th, td {
-      line-height: 1.8;
-      padding: 10px 15px;
       box-sizing: border-box;
+    }
+    td {
+      padding: 10px 15px;
     }
     th {
       padding: 6px 10px;
     }
+    td p {
+      line-height: 1.8;
+    }
     td.img-cell {
-      padding: 1px;
+      padding: 1px 0px;
+    }
+    td.img-cell img {
+      display: inline;
     }
     .table-head-room {
       background-color: #8EAADB;
@@ -364,9 +377,10 @@
               <p>部位：主卫</p>
             </td>
             <td class="img-cell">
-              <div style="display: flex; flex-wrap: wrap;">
+              <!-- 这个div容器可以不要了，本意是去掉img右和底部的自动空白，但实际只在浏览器有效果，wkhtmltopdf打印出来无效 -->
+              <!-- <div style="display: flex; flex-wrap: wrap;"> -->
                 <img src="https://s3.bmp.ovh/imgs/2022/08/23/fd2092dd5236bcb5.jpeg" alt="" width="200" height="auto">
-              </div>
+              <!-- </div> -->
             </td>
           </tr>
           <tr>
