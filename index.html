@@ -139,9 +139,11 @@
     }
     td {
       padding: 10px 15px;
+      font-weight: 400;
     }
     th {
       padding: 6px 10px;
+      font-weight: 900;
     }
     td p, td div {
       line-height: 1.8;
@@ -159,6 +161,13 @@
     .table-head {
       background-color: #9bc0eb;
       text-align: center;
+    }
+
+    .info-table {
+      font-size: 24px;
+    }
+    .info-table th {
+      width: 120px;
     }
 
     .statistics-tip {
@@ -207,7 +216,7 @@
   <main class="page-start">
     <section class="page page-start">
       <h2>一、房屋基础信息</h2>
-      <table style="width: 100%;">
+      <table style="width: 100%;" class="info-table">
         <tbody>
           <tr>
             <th>楼盘名称</th>
@@ -508,7 +517,8 @@
         axisLabel: {
           interval: 0,
           rotate: 45,
-          color: '#000000'
+          color: '#000000',
+          fontSize: 16
         },
         axisLine: {
           lineStyle: {
@@ -523,7 +533,8 @@
       },
       yAxis: {
         axisLabel: {
-          color: '#000000'
+          color: '#000000',
+          fontSize: 16
         },
         splitLine: {
           lineStyle: {
@@ -543,7 +554,8 @@
           label: {
             show: true,
             position: 'top',
-            color: '#000000'
+            color: '#000000',
+            fontSize: 16
           },
           animation: false
         }
@@ -562,7 +574,8 @@
         axisLabel: {
           interval: 0,
           rotate: 45,
-          color: '#000000'
+          color: '#000000',
+          fontSize: 16
         },
         axisLine: {
           lineStyle: {
@@ -577,7 +590,8 @@
       },
       yAxis: {
         axisLabel: {
-          color: '#000000'
+          color: '#000000',
+          fontSize: 16
         },
         splitLine: {
           lineStyle: {
@@ -599,7 +613,8 @@
           label: {
             show: true,
             position: 'top',
-            color: '#000000'
+            color: '#000000',
+            fontSize: 16
           },
           animation: false
         }
