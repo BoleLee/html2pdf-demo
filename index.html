@@ -143,7 +143,7 @@
     th {
       padding: 6px 10px;
     }
-    td p {
+    td p, td div {
       line-height: 1.8;
     }
     td.img-cell {
@@ -496,7 +496,7 @@
 
   <script type="text/javascript">
     // 空间分布统计图
-    const chartSpace = echarts.init(document.getElementById('chartColumnSpace'));
+    const chartSpace = echarts.init(document.getElementById('chartColumnSpace'), null, { renderer: 'svg' });
     const spaceOption = {
       title: {
         // text: '查验问题空间分布'
@@ -507,10 +507,30 @@
         data: ['公卫', '主卫', '厨房'],
         axisLabel: {
           interval: 0,
-          rotate: 45
+          rotate: 45,
+          color: '#000000'
+        },
+        axisLine: {
+          lineStyle: {
+            color: '#8a8a8a'
+          }
+        },
+        axisTick: {
+          lineStyle: {
+            color: '#8a8a8a'
+          }
         }
       },
-      yAxis: {},
+      yAxis: {
+        axisLabel: {
+          color: '#000000'
+        },
+        splitLine: {
+          lineStyle: {
+            color: '#8a8a8a'
+          }
+        },
+      },
       series: [
         {
           name: '问题数',
@@ -522,7 +542,8 @@
           barMaxWidth: 70,
           label: {
             show: true,
-            position: 'top'
+            position: 'top',
+            color: '#000000'
           },
           animation: false
         }
@@ -531,7 +552,7 @@
     chartSpace.setOption(spaceOption);
 
     // 分类统计图
-    const chartKind = echarts.init(document.getElementById('chartColumnKind'));
+    const chartKind = echarts.init(document.getElementById('chartColumnKind'), null, { renderer: 'svg' });
     const kindOption = {
       title: {},
       tooltip: {},
@@ -540,10 +561,30 @@
         data: ["墙砖","净高度","靠尺 墙面 地面","厨房设备","信报箱","露台/阳台防水","门框","卫生洁具","电话、信息网络","表面平整度","板材隔墙工程","送、回风管道，送、回风口"],
         axisLabel: {
           interval: 0,
-          rotate: 45
+          rotate: 45,
+          color: '#000000'
+        },
+        axisLine: {
+          lineStyle: {
+            color: '#8a8a8a'
+          }
+        },
+        axisTick: {
+          lineStyle: {
+            color: '#8a8a8a'
+          }
         }
       },
-      yAxis: {},
+      yAxis: {
+        axisLabel: {
+          color: '#000000'
+        },
+        splitLine: {
+          lineStyle: {
+            color: '#8a8a8a'
+          }
+        },
+      },
       grid: {
         bottom: '20%'
       },
@@ -557,7 +598,8 @@
           barMaxWidth: 70,
           label: {
             show: true,
-            position: 'top'
+            position: 'top',
+            color: '#000000'
           },
           animation: false
         }
