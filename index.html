@@ -78,6 +78,7 @@
       background: #fff;
       box-sizing: border-box;
       font-size: 18px;
+      font-family: 'PingFang SC', 'Microsoft YaHei' arial, sans-serif;
     }
     .page {
       /* min-height: 1123px; */
@@ -165,13 +166,14 @@
 
     .info-table {
       font-size: 24px;
+      line-height: 2.2;
     }
     .info-table th {
       width: 120px;
     }
 
     .statistics-tip {
-      font-size: 16px;
+      font-size: 18px;
       line-height: 1.8;
     }
 
@@ -240,19 +242,19 @@
             <th>房屋结构</th>
             <td>
               <div>
-                <input type="radio" name="house_structure" id="brick-concrete" value="砖混结构">
+                <input type="checkbox" name="house_structure" id="brick-concrete" value="砖混结构">
                 <label for="brick-concrete">砖混结构</label>
               </div>
               <div>
-                <input type="radio" name="house_structure" id="steel"value="钢结构">
+                <input type="checkbox" name="house_structure" id="steel"value="钢结构">
                 <label for="steel">钢结构</label>
               </div>
               <div>
-                <input type="radio" name="house_structure" id="reinforced-concrete" value="钢筋混泥土结构">
+                <input type="checkbox" name="house_structure" id="reinforced-concrete" value="钢筋混泥土结构">
                 <label for="reinforced-concrete">钢筋混凝土结构</label>
               </div>
               <div>
-                <input type="radio" name="house_structure" id="frame-shear-wall" value="框剪结构" checked>
+                <input type="checkbox" name="house_structure" id="frame-shear-wall" value="框剪结构" checked>
                 <label for="frame-shear-wall">框剪结构</label>
               </div>
             </td>
