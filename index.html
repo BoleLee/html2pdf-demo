@@ -66,6 +66,13 @@
     p {
       margin: 0;
     }
+
+    /* 字体 */
+    @font-face {
+      font-family: Source Han Sans CN;
+      src: url("./SourceHanSansCN/SourceHanSansCN-Normal.otf") format("otf"), url("./SourceHanSansCN/SourceHanSansCN-Bold.otf")
+          format("otf");
+    }
     
     /* A4 (210*297)mm 96dpi (794*1123)px */
     /* 820*1160 ? */
@@ -78,7 +85,7 @@
       background: #fff;
       box-sizing: border-box;
       font-size: 20px;
-      font-family: 'PingFang SC', 'Microsoft YaHei' arial, sans-serif;
+      font-family: Source Han Sans CN;
     }
     .page {
       /* min-height: 1123px; */
@@ -140,11 +147,10 @@
     }
     td {
       padding: 10px 15px;
-      font-weight: 400;
     }
     th {
       padding: 6px 10px;
-      font-weight: 900;
+      font-weight: bold;
     }
     td p, td div {
       line-height: 1.8;
