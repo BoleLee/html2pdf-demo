@@ -73,6 +73,10 @@
       src: url("./SourceHanSansCN/SourceHanSansCN-Normal.otf") format("otf"), url("./SourceHanSansCN/SourceHanSansCN-Bold.otf")
           format("otf");
     }
+    @font-face {
+      font-family: FZFangSong-Z02S;
+      src: url("./FZFangSong-Z02S/FangZhengFangSongJianTi-1.ttf") format("ttf");
+    }
     
     /* A4 (210*297)mm 96dpi (794*1123)px */
     /* 820*1160 ? */
@@ -85,7 +89,10 @@
       background: #fff;
       box-sizing: border-box;
       font-size: 20px;
-      font-family: Source Han Sans CN;
+      font-family: 'FZFangSong-Z02S', STFangsong, FangSong;
+    }
+    h2 {
+      font-family: 'Source Han Sans CN', STHeiti, SimHei;
     }
     .page {
       /* min-height: 1123px; */
