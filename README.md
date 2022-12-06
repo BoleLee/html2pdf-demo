@@ -149,9 +149,13 @@ npx http-server ./
 
 ### 检验打印效果-wkhtmltopdf
 
-1. 开启本地服务：报告html页面：http://127.0.0.1:8080/  页眉html页面：http://127.0.0.1:8080/page-header.html
-2. 本地安装 wkhtmltopdf：brew install wkhtmltopdf
-3. 运行命令输出pdf: wkhtmltopdf --header-html http://127.0.0.1:8080/page-header.html http://127.0.0.1:8080/ 1_v46.pdf
+1. 开启本地服务：`npx http-server` 报告html页面：http://127.0.0.1:8080/  页眉html页面：http://127.0.0.1:8080/page-header.html
+2. 本地安装 wkhtmltopdf：`brew install wkhtmltopdf`
+3. 运行命令输出pdf: `wkhtmltopdf --header-html http://127.0.0.1:8080/page-header.html http://127.0.0.1:8080/ 1_v46.pdf`, 更多参数参见wkhtmltopdf文档
+
+常用命令：
+
+`wkhtmltopdf --enable-local-file-access --lowquality --image-quality 30 --image-dpi 800 --dpi 160 --quiet --margin-bottom 5mm --margin-top 5mm [目标网页] [输出文档]`
 
 - 效果与Chrome打印接近
 - 表格单元格没有被换页，表格换页有重复表头
