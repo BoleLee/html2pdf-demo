@@ -164,7 +164,25 @@ npx http-server ./
 
 #### wkhtmltopdf打印问题
 
-- table个别行打印后，其后面有空白，解决方案：添加样式`tr {page-break-inside: avoid !important;}`, 来自：[github issue #3405](https://github.com/wkhtmltopdf/wkhtmltopdf/issues/3405#issuecomment-414918786), 相关：#5258
+- **table个别行打印后，其后面有空白**
+
+解决方案：添加样式`tr {page-break-inside: avoid !important;}`, 来自：[github issue #3405](https://github.com/wkhtmltopdf/wkhtmltopdf/issues/3405#issuecomment-414918786), 相关：#5258
+
+- **display: flex打印无效**
+
+解决方案：https://stackoverflow.com/questions/57020675/using-flex-css-with-wkhtmltopdf
+https://github.com/wkhtmltopdf/wkhtmltopdf/issues/1522
+
+```css
+.row {
+  display: -webkit-box; /* wkhtmltopdf uses this one */
+  display: flex;
+  -webkit-box-pack: center; /* wkhtmltopdf uses this one */
+  justify-content: center;
+}
+```
+
+-webkit-box 基本排列规则与flex一致，但无法去除被排列图片的底部空白；另外-webkit-box-pack无flex-end，对应的为end。
 
 ## 参考资源
 
