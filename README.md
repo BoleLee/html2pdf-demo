@@ -184,6 +184,12 @@ https://github.com/wkhtmltopdf/wkhtmltopdf/issues/1522
 
 -webkit-box 基本排列规则与flex一致，但无法去除被排列图片的底部空白；另外-webkit-box-pack无flex-end，对应的为end。
 
+- **echarts图表无法打印**
+
+1) 开启js调试参数 `--debug-javascript`, 根据命令执行提示自查代码，可能是一些新语法不支持，比如箭头函数、let；
+2）实测 wkhtmltopdf 0.12.6 版本，let不支持，但const支持；其他箭头函数等太高ES版本的语法，大概都不支持；
+3）将echarts的动画关闭，`animation: false`，因不好确定js要延迟等待多久，关闭动画最直接。
+
 ## 参考资源
 
 - [html A4打印尺寸设置](https://icode.best/i/01425742130811)
