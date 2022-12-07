@@ -239,6 +239,10 @@ https://github.com/wkhtmltopdf/wkhtmltopdf/issues/1522
 
 [相关issue #4216](https://github.com/wkhtmltopdf/wkhtmltopdf/issues/4216)
 
+- **图片“严重问题”打印后无颜色，变成灰度的**
+
+封面图片没有这个问题，一样的使用方式，打印出来是有颜色的（LOGO和红色印章等）。
+
 ## 参考资源
 
 - [html A4打印尺寸设置](https://icode.best/i/01425742130811)
