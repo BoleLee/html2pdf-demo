@@ -65,6 +65,46 @@ page-break-inside | avoid, auto | 该元素避免分页，保持在同一页
 
 html中用`@bottom-left, @bottom-center, @bottom-right`等属性，但经测试这些设置均无效，要用库的相关参数设置才可以。
 
+### 打印样式最佳实践
+
+```css
+@media print {
+  @page {
+    size: A4 portrait;
+    /* margin: 5mm; */
+
+    /* 以下设置常见浏览器不支持 */
+    /* @bottom-left, @bottom-center, @bottom-right {
+      border-top: 1px solid gray;
+    }
+    @bottom-center {
+      content: "第" counter(page) "页";
+    } */
+  }
+  
+  html, body {
+    height: 297mm;
+    box-sizing: border-box;
+  }
+  h1, h2, h3, h4, h5, h6,
+  thead, tfoot, tr, th, td,
+  li,
+  canvas {
+    page-break-inside: avoid;
+  }
+  body {
+    background-color: white;
+    color: black;
+  }
+  a::after {
+    content: "(" attr(href) ")";
+  }
+  thead, tfoot {
+    display: table-row-group;
+  }
+}
+```
+
 ### 图表：是否支持canvas/svg
 
 svg标签跟其他html标签无异，可正常打印，测试了某icon
@@ -161,6 +201,7 @@ npx http-server ./
 - 表格单元格没有被换页，表格换页有重复表头
 - 页眉由参数指定 --header-html，页眉的html须为html5，即含`<!DOCTYPE html>`
 - 页脚参数 --footer-center 加页脚页码，测试无效？
+- 整个文档伸缩的相关属性： `--zoom, --disabled-smart-shrinking, --dpi` (https://stackoverflow.com/questions/40022108/wkhtml2pdf-rendering-size-issue) （https://github.com/wkhtmltopdf/wkhtmltopdf/issues/4036）
 
 #### wkhtmltopdf打印问题
 
@@ -189,6 +230,14 @@ https://github.com/wkhtmltopdf/wkhtmltopdf/issues/1522
 1) 开启js调试参数 `--debug-javascript`, 根据命令执行提示自查代码，可能是一些新语法不支持，比如箭头函数、let；
 2）实测 wkhtmltopdf 0.12.6 版本，let不支持，但const支持；其他箭头函数等太高ES版本的语法，大概都不支持；
 3）将echarts的动画关闭，`animation: false`，因不好确定js要延迟等待多久，关闭动画最直接。
+
+- **checkbox/radio打印出来视觉太小**
+
+1) zoom放大，但打印无效。zoom这个样式非标准：https://developer.mozilla.org/en-US/docs/Web/CSS/zoom
+2) width+height控制，但打印无效。
+3) 使用 transform 将其scale，注意要用-webkit-transform兼容，效果浏览器与打印出来有差异，此处调整以打印效果为准。
+
+[相关issue #4216](https://github.com/wkhtmltopdf/wkhtmltopdf/issues/4216)
 
 ## 参考资源
 
